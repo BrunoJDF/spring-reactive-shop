@@ -1,8 +1,12 @@
 package com.reactive.shopreactive.persistence.crud;
 
 import com.reactive.shopreactive.persistence.entity.ProductEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ProductCrudRepository extends JpaRepository<ProductEntity, Long> {
+import java.util.Optional;
+
+public interface ProductCrudRepository extends CrudRepository<ProductEntity, Long> {
+
+    Optional<ProductEntity> findByIdCategoria(long cageoriaId);
 
 }

@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Single;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -16,6 +17,14 @@ public class CategoryService {
     }
 
     public Single<List<CategoryDto>> findAll(){
-        return repository.findAll();
+        return Single.create(emitter -> {
+            emitter.onSuccess(repository.findAll());
+        });
+    }
+
+    public Single<Optional<CategoryDto>> findById(long id){
+        return Single.create(emitter ->{
+            emitter.onSuccess(repository.findById(id));
+        });
     }
 }

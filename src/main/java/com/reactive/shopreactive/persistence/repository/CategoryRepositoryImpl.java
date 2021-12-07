@@ -5,10 +5,10 @@ import com.reactive.shopreactive.domain.repository.CategoryRepository;
 import com.reactive.shopreactive.persistence.crud.CategoryCrudRepository;
 import com.reactive.shopreactive.persistence.entity.CategoryEntity;
 import com.reactive.shopreactive.persistence.mapper.CategoryMapper;
-import io.reactivex.rxjava3.core.Single;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class CategoryRepositoryImpl implements CategoryRepository{
@@ -22,17 +22,18 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 
 
     @Override
-    public Single<CategoryDto> save(CategoryDto categoryDto) {
+    public CategoryDto save(CategoryDto categoryDto) {
         return null;
     }
 
     @Override
-    public Single<List<CategoryDto>> findAll() {
-        return Single.create(subscribe-> {
-            List<CategoryEntity> listCategories = (List<CategoryEntity>) repository.findAll();
-            if(listCategories.size() > 0){
-                subscribe.onSuccess(mapper.toListCategoryDto((List<CategoryEntity>) repository.findAll()));
-            }
-        });
+    public List<CategoryDto> findAll() {
+        List<CategoryEntity> listCategories = (List<CategoryEntity>) repository.findAll();
+        return mapper.toListCategoryDto((List<CategoryEntity>) repository.findAll());
+    }
+
+    @Override
+    public Optional<CategoryDto> findById(long id) {
+        return repository.findById(id).map(mapper::toCategoryDto);
     }
 }

@@ -22,6 +22,9 @@ public class ProductEntity {
     private int cantidadStock;
     @Column(name = "estado")
     private boolean estado;
+    @Column(name = "id_categoria")
+    private long idCategoria;
+
 
     @ManyToOne
     @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
