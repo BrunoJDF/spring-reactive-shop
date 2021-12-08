@@ -8,6 +8,7 @@ import com.reactive.shopreactive.persistence.entity.ProductEntity;
 import com.reactive.shopreactive.persistence.mapper.ProductMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +47,24 @@ public class ProductRepositoryImpl implements ProductRepository{
     @Override
     public Optional<ProductDto> findById(long id) {
         return repository.findById(id).map(mapper::toProductDto);
+    }
+
+    @Override
+    public Optional<ProductDto> findByName(String name) {
+        return repository.findByNombre(name).map(mapper::toProductDto);
+    }
+
+    @Override
+    public Optional<ProductDto> update(ProductDto foundProduct, ProductDto changes) {
+        ProductEntity changed;
+        try {
+            ProductEntity entity = mapper.toProductEntity(foundProduct);
+            mapper.updateProductFromDto(changes, entity);
+            changed = repository.save(entity);
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            throw e;
+        }
+        return Optional.of(changed).map(mapper::toProductDto);
     }
 }

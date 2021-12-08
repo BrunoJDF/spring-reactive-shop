@@ -32,4 +32,14 @@ public class ProductController {
     public Single<ResponseEntity<?>> findById(@PathVariable long id){
         return service.findById(id).map(ResponseEntity::ok);
     }
+
+    @GetMapping("/by/name")
+    public Single<ResponseEntity<?>> findByName(@RequestParam String name){
+        return service.findByName(name).map(ResponseEntity::ok);
+    }
+
+    @PutMapping("{id}")
+    public Single<ResponseEntity<?>> update(@PathVariable("id") long id, @RequestBody ProductDto dto){
+        return service.update(id, dto).map(ResponseEntity::ok);
+    }
 }

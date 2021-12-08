@@ -9,4 +9,5 @@ public interface ProductCrudRepository extends CrudRepository<ProductEntity, Lon
 
     Optional<ProductEntity> findByIdCategoria(long cageoriaId);
 
+    Optional<ProductEntity> findByNombre(String name);
 }

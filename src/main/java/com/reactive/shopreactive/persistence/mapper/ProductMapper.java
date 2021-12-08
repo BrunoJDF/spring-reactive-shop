@@ -2,10 +2,7 @@ package com.reactive.shopreactive.persistence.mapper;
 
 import com.reactive.shopreactive.domain.dto.ProductDto;
 import com.reactive.shopreactive.persistence.entity.ProductEntity;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -28,4 +25,17 @@ public interface ProductMapper {
             @Mapping(target = "codigoBarras", ignore = true)
     })
     ProductEntity toProductEntity(ProductDto dto);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mappings({
+            @Mapping(target = "precioVenta", source = "price"),
+            @Mapping(target = "nombre", source = "name"),
+            @Mapping(target = "idCategoria", source = "categoryId"),
+            @Mapping(target = "estado", source = "active"),
+            @Mapping(target = "category", source = "category"),
+            @Mapping(target = "cantidadStock", source = "stock"),
+            @Mapping(target = "idProducto", ignore = true),
+            @Mapping(target = "codigoBarras", ignore = true),
+    })
+    void updateProductFromDto(ProductDto dto, @MappingTarget ProductEntity entity);
 }

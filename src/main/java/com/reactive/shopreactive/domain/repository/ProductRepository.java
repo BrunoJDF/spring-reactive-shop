@@ -13,4 +13,8 @@ public interface ProductRepository {
     Optional<ProductDto> findByCategoryId(long id);
 
     Optional<ProductDto> findById(long id);
+
+    Optional<ProductDto> findByName(String name);
+
+    Optional<ProductDto> update(ProductDto productDto, ProductDto changes);
 }
