@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  shop-reactive:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: c_shop-reactive
+    restart: always
+    ports:
+      - "9001:9001"
+    networks:
+      - database
+networks:
+  database:
+    name: shop_default

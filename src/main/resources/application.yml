@@ -1,7 +1,29 @@
 
+spring:
+  profiles:
+    active: "dev"
+
+---
+server:
+  port: 9001
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://shop_postgres_1:5432/myshop
+    username: root
+    password: 123456
+
+---
 server:
   port: 8090
 spring:
+  config:
+    activate:
+      on-profile: dev
   jpa:
     show-sql: true
   datasource:
