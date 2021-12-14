@@ -3,7 +3,7 @@ package com.reactive.shopreactive.domain.service;
 import com.reactive.shopreactive.common.exceptions.BadRequestException;
 import com.reactive.shopreactive.common.message.Descriptions;
 import com.reactive.shopreactive.domain.dto.CategoryDto;
-import com.reactive.shopreactive.domain.dto.ProductDto;
+import com.reactive.shopreactive.domain.dto.product.ProductDto;
 import com.reactive.shopreactive.domain.repository.ProductRepository;
 import io.reactivex.rxjava3.core.Single;
 import javassist.NotFoundException;
@@ -26,11 +26,11 @@ public class ProductService {
         this.categoryService = categoryService;
     }
 
-    public Single<ProductDto> save(ProductDto dto){
+    public Single<ProductDto> save(ProductDto dto) {
         return Single.create(emitter -> {
             Optional<CategoryDto> foundCategory = categoryService.findById(dto.getCategoryId()).toFuture().get();
-            if(foundCategory.isEmpty()){
-                throw new NotFoundException(Descriptions.notFound(CategoryDto.class));
+            if (foundCategory.isEmpty()) {
+                throw new NotFoundException(Descriptions.notFound("Categoria"));
             }
             dto.setCategory(foundCategory.get());
             log.info(DEBUG + dto);
@@ -38,45 +38,47 @@ public class ProductService {
         });
     }
 
-    public Single<List<ProductDto>> findAll(){
+    public Single<List<ProductDto>> findAll() {
         return Single.create(emitter -> {
             emitter.onSuccess(repository.findAll());
         });
     }
 
-    public Single<Optional<ProductDto>> findById(long id){
+    public Single<Optional<ProductDto>> findById(long id) {
         return Single.create(emitter -> {
             Optional<ProductDto> found = repository.findById(id);
-            if(found.isEmpty()){
-                throw new NotFoundException(Descriptions.notFound(ProductDto.class));
+            if (found.isEmpty()) {
+                throw new NotFoundException(Descriptions.notFound("Producto"));
             }
             emitter.onSuccess(found);
         });
     }
 
-    public Single<Optional<ProductDto>> findByName(String name){
+    public Single<Optional<ProductDto>> findByName(String name) {
         return Single.create(emitter -> {
             Optional<ProductDto> found = repository.findByName(name);
-            if(found.isEmpty()){
-                throw new NotFoundException(Descriptions.notFound(ProductDto.class));
+            if (found.isEmpty()) {
+                throw new NotFoundException(Descriptions.notFound("Producto"));
             }
             emitter.onSuccess(found);
         });
     }
 
-    public Single<Optional<ProductDto>> update(long id, ProductDto dto){
+    public Single<Optional<ProductDto>> update(long id, ProductDto dto) {
         return Single.create(emitter -> {
             Optional<ProductDto> foundProduct = findById(id).toFuture().get();
-            if(foundProduct.isEmpty()){
-                throw new NotFoundException(Descriptions.notFound(ProductDto.class));
+            if (foundProduct.isEmpty()) {
+                throw new NotFoundException(Descriptions.notFound("Producto"));
             }
+
             Optional<CategoryDto> foundCategory = categoryService.findById(dto.getCategoryId()).toFuture().get();
-            if(foundCategory.isEmpty()){
-                throw new NotFoundException(Descriptions.notFound(CategoryDto.class));
+            if (foundCategory.isEmpty()) {
+                throw new NotFoundException(Descriptions.notFound("Categoria"));
             }
+
             Optional<ProductDto> changed = repository.update(foundProduct.get(), dto);
-            if(changed.isEmpty()){
-                throw new BadRequestException(Descriptions.badRequest(ProductDto.class));
+            if (changed.isEmpty()) {
+                throw new BadRequestException(Descriptions.badRequest("Producto"));
             }
             emitter.onSuccess(changed);
         });

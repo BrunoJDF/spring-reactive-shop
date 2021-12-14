@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Data
 @Entity(name = "categorias")
 public class CategoryEntity {

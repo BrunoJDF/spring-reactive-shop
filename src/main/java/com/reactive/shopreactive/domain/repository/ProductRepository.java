@@ -1,6 +1,7 @@
 package com.reactive.shopreactive.domain.repository;
 
-import com.reactive.shopreactive.domain.dto.ProductDto;
+import com.reactive.shopreactive.domain.dto.product.ProductDto;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,5 +17,6 @@ public interface ProductRepository {
 
     Optional<ProductDto> findByName(String name);
 
+    @Transactional(rollbackFor = Exception.class)
     Optional<ProductDto> update(ProductDto productDto, ProductDto changes);
 }

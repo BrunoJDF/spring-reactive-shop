@@ -5,15 +5,15 @@ public class Descriptions {
     private static final String BAD_REQUEST = "No se realizo peticion ";
     private static final String ERROR = "Error ";
 
-    public static String notFound(Class<?> arg){
-        return NOT_FOUND + arg.getName();
+    public static String notFound(String arg){
+        return NOT_FOUND + arg;
     }
 
-    public static String badRequest(Class<?> arg){
-        return BAD_REQUEST + arg.getName();
+    public static String badRequest(String arg){
+        return BAD_REQUEST + arg;
     }
 
-    public static String error(Class<?> arg){
-        return ERROR + arg.getName();
+    public static String error(String arg){
+        return ERROR + arg;
     }
 }

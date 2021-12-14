@@ -1,6 +1,6 @@
 package com.reactive.shopreactive.persistence.mapper;
 
-import com.reactive.shopreactive.domain.dto.ProductDto;
+import com.reactive.shopreactive.domain.dto.product.ProductDto;
 import com.reactive.shopreactive.persistence.entity.ProductEntity;
 import org.mapstruct.*;
 
