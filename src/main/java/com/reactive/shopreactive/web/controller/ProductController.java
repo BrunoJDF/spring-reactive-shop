@@ -1,6 +1,6 @@
 package com.reactive.shopreactive.web.controller;
 
-import com.reactive.shopreactive.domain.dto.product.ProductDto;
+import com.reactive.shopreactive.domain.dto.ProductDto;
 import com.reactive.shopreactive.domain.service.ProductService;
 import com.reactive.shopreactive.web.constants.ApiMapping;
 import io.reactivex.rxjava3.core.Single;

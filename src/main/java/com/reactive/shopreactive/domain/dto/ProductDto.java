@@ -1,6 +1,5 @@
-package com.reactive.shopreactive.domain.dto.product;
+package com.reactive.shopreactive.domain.dto;
 
-import com.reactive.shopreactive.domain.dto.CategoryDto;
 import lombok.Data;
 
 import java.math.BigDecimal;

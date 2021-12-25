@@ -3,7 +3,7 @@ package com.reactive.shopreactive.domain.service;
 import com.reactive.shopreactive.common.exceptions.BadRequestException;
 import com.reactive.shopreactive.common.message.Descriptions;
 import com.reactive.shopreactive.domain.dto.CategoryDto;
-import com.reactive.shopreactive.domain.dto.product.ProductDto;
+import com.reactive.shopreactive.domain.dto.ProductDto;
 import com.reactive.shopreactive.domain.repository.ProductRepository;
 import io.reactivex.rxjava3.core.Single;
 import javassist.NotFoundException;

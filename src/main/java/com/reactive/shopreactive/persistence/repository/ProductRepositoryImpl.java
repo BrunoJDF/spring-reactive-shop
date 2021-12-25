@@ -1,7 +1,7 @@
 package com.reactive.shopreactive.persistence.repository;
 
 import com.reactive.shopreactive.common.ApiTag;
-import com.reactive.shopreactive.domain.dto.product.ProductDto;
+import com.reactive.shopreactive.domain.dto.ProductDto;
 import com.reactive.shopreactive.domain.repository.ProductRepository;
 import com.reactive.shopreactive.persistence.crud.ProductCrudRepository;
 import com.reactive.shopreactive.persistence.entity.ProductEntity;

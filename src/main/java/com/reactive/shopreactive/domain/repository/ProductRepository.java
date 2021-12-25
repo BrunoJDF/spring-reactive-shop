@@ -1,6 +1,6 @@
 package com.reactive.shopreactive.domain.repository;
 
-import com.reactive.shopreactive.domain.dto.product.ProductDto;
+import com.reactive.shopreactive.domain.dto.ProductDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
