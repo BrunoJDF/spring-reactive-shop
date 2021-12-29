@@ -75,6 +75,7 @@ public class ProductService {
             if (foundCategory.isEmpty()) {
                 throw new NotFoundException(Descriptions.notFound("Categoria"));
             }
+            dto.setCategory(foundCategory.get());
 
             Optional<ProductDto> changed = repository.update(foundProduct.get(), dto);
             if (changed.isEmpty()) {
