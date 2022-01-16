@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: c_shop-reactive
-    restart: always
     ports:
       - "9001:9001"
     networks:

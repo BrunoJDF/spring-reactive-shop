@@ -30,3 +30,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/myshop
     username: root
     password: 123456
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

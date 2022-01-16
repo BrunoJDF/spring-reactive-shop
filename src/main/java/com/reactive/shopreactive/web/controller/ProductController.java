@@ -23,9 +23,7 @@ public class ProductController {
 
     @PostMapping
     public Single<ResponseEntity<ProductDto>> save(@RequestBody ProductDto dto){
-        return service.save(dto).map(productDto -> {
-            return ResponseEntity.ok().body(productDto);
-        });
+        return service.save(dto).map(productDto -> ResponseEntity.ok().body(productDto));
     }
 
     @GetMapping("{id}")
